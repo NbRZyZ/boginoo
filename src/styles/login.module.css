@@ -1,0 +1,44 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 50px;
+    padding-right: 40px;
+    color: #02B589;
+}
+.headerp{
+   color: #02B589;
+}
+.button{
+    background-color: #02B589;
+    border-radius: 40px;
+    width: 380px;
+    height: 35px;
+    border: none;
+    margin-top: 10px;
+}
+.container{
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.input{
+    height:30px;
+    width: 380px;
+    border-radius: 20px;
+    border: none;
+    border: 1px solid rgb(216, 216, 216);
+}
+.p{
+    display: flex;
+    
+}
+.minicont{
+    display: flex;
+    flex-direction: row;
+}
+.forgot{
+    padding-left: 120px;
+}
