@@ -9,6 +9,7 @@ export const Login = () =>{
         </div>
         <div className={styles.container}>
         <img className={styles.logo} src={logo}/>
+        <h1 style={{"color":"#02B589"}}>Нэвтрэх</h1>
             <p className={styles.p}>Цахим хаяг</p>
             <input className={styles.input}></input>
             <p className={styles.p}>Нууц үг</p>
@@ -18,7 +19,7 @@ export const Login = () =>{
                 <p  className={styles.headerp}>Намайг сана</p>
                 <p className={styles.forgot}>Нууц үгээ мартсан</p>
             </div>
-            <button className={styles.button}>Нэвтрэх</button>
+            <Link to="/"><button className={styles.button}>Нэвтрэх</button></Link>
           <Link to="/signup"><p>Шинэ хэрэглэгч бол энд дарна уу?</p></Link>
         </div>
       </div>
