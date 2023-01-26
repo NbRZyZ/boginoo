@@ -1,6 +1,8 @@
 import styles from "../styles/Signup.module.css";
 import logo from "../assests/logo-default.png";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
 export const Signup = () =>{
     return(
         <div>
@@ -17,7 +19,7 @@ export const Signup = () =>{
             <p className={styles.p}>Нууц үг давтана уу?</p>
             <input className={styles.input} type="password"></input>
             <br></br>
-           <Link to="/login"><button className={styles.button}>Бүртгүүлэх</button></Link>
+           <button className={styles.button}>Бүртгүүлэх</button>
         </div>
       </div>
     )

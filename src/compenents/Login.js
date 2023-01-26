@@ -19,7 +19,7 @@ export const Login = () =>{
                 <p  className={styles.headerp}>Намайг сана</p>
                 <p className={styles.forgot}>Нууц үгээ мартсан</p>
             </div>
-            <Link to="/"><button className={styles.button}>Нэвтрэх</button></Link>
+           <button className={styles.button}>Нэвтрэх</button>
           <Link to="/signup"><p>Шинэ хэрэглэгч бол энд дарна уу?</p></Link>
         </div>
       </div>

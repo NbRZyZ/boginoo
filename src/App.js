@@ -8,7 +8,6 @@ function App() {
     <Route index element={<Home />} />
     <Route path="/login" element={<Login/>} />
     <Route path="/signup" element={<Signup/>} />
-      {/* <LinkResult/> */}
       </Routes>
     </div>
     </BrowserRouter>
