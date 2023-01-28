@@ -1,12 +1,15 @@
 import styles from "../styles/home.module.css" 
 import logo from "../assests/logo-default.png"
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import Dropdown from "react-bootstrap/Dropdown";
 export function Home() {
-
+  
+  const Navigate =useNavigate();
   const [url, setUrl] = useState("");
   const [resUrl, setResUrl] = useState();
+  const [user, setUser] = useState(null);
   const AddLink = (e) => {
     e.preventDefault();
     axios
