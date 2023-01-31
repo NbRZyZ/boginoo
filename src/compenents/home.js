@@ -9,6 +9,7 @@ export function Home() {
   const Navigate =useNavigate();
   const [url, setUrl] = useState("");
   const [resUrl, setResUrl] = useState();
+  const [toggle, setToggle] = useState(false);
   const [user, setUser] = useState(null);
   const AddLink = (e) => {
     e.preventDefault();
@@ -47,7 +48,12 @@ export function Home() {
             localhost:8000/{resUrl.short}{" "}
           </a>
         </div>  
-      )}
+        )}
+         <h1 style={{"color":"#02B589"}} onClick={() => setToggle(!toggle)}>Түүх</h1>
+          {toggle && (
+        <div className={styles.history}>
+          </div>
+          )}
         </div>
       </div>
     );
