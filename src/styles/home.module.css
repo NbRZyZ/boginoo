@@ -1,6 +1,6 @@
-/* *{
-    color: white
-} */
+*{
+   text-decoration: none;
+}
 .header{
     display: flex;
     flex-direction: row;
@@ -60,9 +60,20 @@
   .urlTexts {
     opacity: 80%;
   }
-  .history {
-    margin-top: 20px;
-    border: 1px solid red;
-    width: 42%;
-    height: 400px;
-  }
+a:link { text-decoration: none; color: black;}
+.histcont{
+    display: flex;
+    flex-direction: row;
+}
+.full{
+    display: flex;
+    flex-direction: column;
+    margin-right: 100px;
+    width: 300px;
+}
+.short{
+    display: flex;
+    flex-direction:column;
+    width: 300px;
+    
+}

@@ -1,16 +1,23 @@
 import styles from "../styles/home.module.css" 
 import logo from "../assests/logo-default.png"
 import { Link , useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState  , useEffect} from "react";
 import axios from "axios";
-import Dropdown from "react-bootstrap/Dropdown";
 export function Home() {
   
   const Navigate =useNavigate();
   const [url, setUrl] = useState("");
   const [resUrl, setResUrl] = useState();
   const [toggle, setToggle] = useState(false);
+  const [history , setHistory] = useState();
   const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    axios.get("http://localhost:8000/links").then((res) => {
+      setHistory(res.data);
+    });
+  }, []);
+
   const AddLink = (e) => {
     e.preventDefault();
     axios
@@ -23,7 +30,6 @@ export function Home() {
         console.log(err);
       });
   };
-
     return (
       <div>
         <div className={styles.header}>
@@ -40,7 +46,9 @@ export function Home() {
           {resUrl && (
         <div className={styles.urlContainer}>
           <span className={styles.urlTexts}>Өгөгдсөн холбоос:</span>
-          <a href={resUrl.full}>{resUrl.full}</a>
+          <a href={resUrl.full}> {resUrl.full.length > 40 &&
+                              resUrl.full.slice(0, 40) + "..."}
+                            {resUrl.full.length < 40 && resUrl.full}</a>
           <span className={styles.urlTexts} style={{ marginTop: "40px" }}>
             Богино холбоос:
           </span>
@@ -49,9 +57,33 @@ export function Home() {
           </a>
         </div>  
         )}
-         <h1 style={{"color":"#02B589"}} onClick={() => setToggle(!toggle)}>Түүх</h1>
+         <h2 style={{"color":"#02B589" ,"padding-top":"100px"}} onClick={() => setToggle(!toggle)}>Түүх</h2>
           {toggle && (
-        <div className={styles.history}>
+        <div  >
+     
+            {history &&
+          history.map((item, index) => {
+            return (
+              <div key={index} className={styles.histcont}>
+                <div  className={styles.full}>
+                  <span className={styles.urlTexts}>Өгөгдсөн холбоос:</span>
+                  <a href={item.full}>
+                            {item.full.length > 24 &&
+                              item.full.slice(0, 26) + "..."}
+                            {item.full.length < 24 && item.full}
+                          </a>
+                  </div>
+            <div className={styles.short}>
+                <span>
+                    Богино холбоос:
+                     </span>
+                     <a href={`http://localhost:8000/${item.short}`}>
+                     localhost:8000/{item.short}{" "}
+            </a>
+            </div>
+              </div>
+            );
+          })}
           </div>
           )}
         </div>
