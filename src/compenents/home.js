@@ -1,6 +1,6 @@
 import styles from "../styles/home.module.css" 
 import logo from "../assests/logo-default.png"
-import { Link , useNavigate } from "react-router-dom";
+import { Link , useNavigate ,useParams} from "react-router-dom";
 import { useState  , useEffect} from "react";
 import axios from "axios";
 export function Home() {
@@ -11,7 +11,8 @@ export function Home() {
   const [toggle, setToggle] = useState(false);
   const [history , setHistory] = useState();
   const [user, setUser] = useState(null);
-
+  const { id } = useParams();
+  
   useEffect(() => {
     axios.get("http://localhost:8000/links").then((res) => {
       setHistory(res.data);
@@ -34,7 +35,12 @@ export function Home() {
       <div>
         <div className={styles.header}>
                 <p className={styles.headerp}>Хэрхэн ажилладаг вэ?</p>
-                <Link to="login"><button className={styles.button}>Нэвтрэх</button></Link>
+                <div className={styles.dropdown}>
+                      <button className={styles.dropbtn}>Нэвтрэх</button>
+                      <div className={styles.dropdowncontent}>
+                        <Link to="/login">Logout</Link>
+                      </div>
+                    </div>
         </div>
         <div className={styles.container}>
           <img className={styles.logo} src={logo}/>
@@ -57,7 +63,7 @@ export function Home() {
           </a>
         </div>  
         )}
-         <h2 style={{"color":"#02B589" ,"padding-top":"100px"}} onClick={() => setToggle(!toggle)}>Түүх</h2>
+         <h2 className={styles.histname} onClick={() => setToggle(!toggle)}>Түүх</h2>
           {toggle && (
         <div  >
      
@@ -81,6 +87,7 @@ export function Home() {
                      localhost:8000/{item.short}{" "}
             </a>
             </div>
+            <p className={styles.copy} onClick={() => {navigator.clipboard.writeText(`http://localhost:8000/${item.short}`)}}>Хуулж авах</p>
               </div>
             );
           })}
