@@ -36,7 +36,7 @@ export function Home() {
         <div className={styles.header}>
                 <p className={styles.headerp}>Хэрхэн ажилладаг вэ?</p>
                 <div className={styles.dropdown}>
-                      <button className={styles.dropbtn}>Нэвтрэх</button>
+                      <Link to="/login"><button className={styles.dropbtn}>Нэвтрэх</button></Link>
                       <div className={styles.dropdowncontent}>
                         <Link to="/login">Logout</Link>
                       </div>

@@ -85,6 +85,7 @@ a:link { text-decoration: none; color: black;}
     padding-top:26px;
     color:#02B589;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 /* dropdown  */

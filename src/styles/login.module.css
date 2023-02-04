@@ -8,6 +8,8 @@
 }
 .headerp{
    color: #02B589;
+   padding-top: 14px;
+   padding-left: 15px;
 }
 .button{
     background-color: #02B589;
@@ -41,4 +43,5 @@
 }
 .forgot{
     padding-left: 120px;
+    padding-top: 14px;
 }
