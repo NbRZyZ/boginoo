@@ -23,7 +23,7 @@
     margin-top: 10px;
 }
 .container{
-    height: 60vh;
+    height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -61,6 +61,12 @@
     opacity: 80%;
   }
 a:link { text-decoration: none; color: black;}
+.bighistorycont{
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  height: 100%;
+}
 .histcont{
     display: flex;
     flex-direction: row;
