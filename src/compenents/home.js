@@ -3,6 +3,7 @@ import logo from "../assests/logo-default.png";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Nav } from "react-bootstrap";
 export function Home() {
   const Navigate = useNavigate();
   const [url, setUrl] = useState("");
@@ -10,15 +11,33 @@ export function Home() {
   const [toggle, setToggle] = useState(false);
   const [history, setHistory] = useState();
   const [user, setUser] = useState(null);
-  const { id } = useParams();
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/Nasa", {
+        headers: {
+          authorization:
+            window.localStorage.getItem("token") &&
+            JSON.parse(window.localStorage.getItem("token")),
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setUser(res.data);
+      });
+  }, []);
 
   useEffect(() => {
     axios.get("http://localhost:8000/links").then((res) => {
       setHistory(res.data);
     });
-
   }, []);
+
+  const Logout = () => {
+    setUser(null);
+    localStorage.removeItem("token");
+    Navigate("/login");
+  };
 
   const AddLink = (e) => {
     e.preventDefault();
@@ -36,14 +55,23 @@ export function Home() {
     <div>
       <div className={styles.header}>
         <p className={styles.headerp}>Хэрхэн ажилладаг вэ?</p>
-        <div className={styles.dropdown}>
-          <Link to="/login">
-            <button className={styles.dropbtn}>Нэвтрэх</button>
-          </Link>
-          <div className={styles.dropdowncontent}>
-            <Link to="/login">Logout</Link>
+
+        {user && (
+          <div className={styles.dropdown}>
+            <button className={styles.dropbtn}>{user && user.email}</button>
+            <div className={styles.dropdowncontent}>
+              <Link onClick={Logout}>Logout</Link>
+            </div>
           </div>
-        </div>
+        )}
+
+        {!user && (
+          <div className={styles.dropdown}>
+            <Link to="/login">
+              <button className={styles.dropbtn}>Нэвтрэх</button>
+            </Link>
+          </div>
+        )}
       </div>
       <div className={styles.container}>
         <img className={styles.logo} src={logo} />

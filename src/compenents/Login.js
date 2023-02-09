@@ -7,15 +7,15 @@ export const Login = () => {
   const Navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(null);
 
   const TB = () => {
     axios
-      .get("http://localhost:8000/tb", {
+      .get("http://localhost:8000/Nasa", {
         headers: {
           authorization:
             window.localStorage.getItem("token") &&
-            JSON.parse(window.localStorage.get("token")),
+            JSON.parse(window.localStorage.getItem("token")),
         },
       })
       .then((res) => {
@@ -45,6 +45,7 @@ export const Login = () => {
         console.log(error.message);
       });
   };
+  
   return (
     <div>
       <div className={styles.header}>
