@@ -3,7 +3,6 @@ import logo from "../assests/logo-default.png";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Nav } from "react-bootstrap";
 export function Home() {
   const Navigate = useNavigate();
   const [url, setUrl] = useState("");
@@ -28,10 +27,11 @@ export function Home() {
   }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/links").then((res) => {
+    axios.get("http://localhost:8000/link", {}).then((res) => {
       setHistory(res.data);
     });
   }, []);
+  console.log(history);
 
   const Logout = () => {
     setUser(null);
@@ -42,7 +42,10 @@ export function Home() {
   const AddLink = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8000/links", { full: url })
+      .post("http://localhost:8000/link",
+       { full: url,
+        author_id: user._id,
+      })
       .then((res) => {
         console.log(res.data);
         setResUrl(res.data);
@@ -111,6 +114,7 @@ export function Home() {
           <div className={styles.bighistorycont}>
             {history &&
               history.map((item, index) => {
+                if (item.author_id === user._id) {
                 return (
                   <div key={index} className={styles.histcont}>
                     <div className={styles.full}>
@@ -139,6 +143,7 @@ export function Home() {
                     </p>
                   </div>
                 );
+                  }
               })}
           </div>
         )}
